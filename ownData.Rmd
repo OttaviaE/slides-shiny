@@ -1,0 +1,464 @@
+---
+title: "Shine bright like an open source app"
+author: "Ottavia M. Epifania"
+runtime: shiny
+output:  
+#    slidy_presentation:
+    ioslides_presentation: 
+      highlight: monochrome
+widescreen: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error = F, 
+                      message = F, warning = F)
+library(shiny)
+library(emoji)
+library(shinyjs)
+```
+
+<style>
+
+.myClass {font-size: 14px;}
+
+</style>
+
+
+```{css echo=FALSE}
+pre {
+  max-height: 700px;
+  overflow-y: auto;
+}
+
+pre[class] {
+  max-height: 500px;
+}
+
+.scroll-100 {
+  max-height: 500px;
+  overflow-y: auto;
+  background-color: inherit;
+}
+```
+
+
+## Let the users use their own data: Practice
+
+```{r echo = FALSE,eval=TRUE}
+shinyApp(
+
+  ui = fluidPage(
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(inputId = "dataset",
+                  label = "Choose a dataset:",
+                  choices = list("rock" = 1, 
+                                 "pressure" = 2,
+                                 "cars" = 3,
+                                 "I want to use my data!!" =4)), # we add an option
+      # Let me introduce you Mr. Conditional Panel
+      conditionalPanel(
+        condition = "input.dataset == '4'", # What is the condition for which I should show up?
+        # What should be displayed inside me once I show up?
+        fileInput("example",  # label for the server
+                  "Wow my data set!", 
+                  accept = c("csv")) # what format do we accept?
+      ),
+      actionButton("load", "Upload data")
+    ),
+
+    mainPanel(
+      plotOutput(
+        "graph"
+      ),
+      verbatimTextOutput(
+        "summary"
+      )
+    ) 
+  )
+),
+
+server = function(input, output){
+    values <- reactiveValues()
+  dataInput <- reactive({
+    if(input$dataset == 1){ 
+      data <- rock
+    } else if (input$dataset == 2 ){
+      data <- pressure
+    } else if (input$dataset == 3) {
+      data <- cars
+    } else if (input$dataset == 4) {
+      data <- read.csv(input$example$datapath) # we call the input for the data 
+            #import by its label and we ask for the data path selected by the user
+    }
+  })
+  observeEvent(input$load, # we load the data set (whatever it is only once the 
+                                       #  user has hit the button)
+               {
+    values$data <- data.frame(dataInput())
+  })
+
+  output$graph <- renderPlot({
+    validate(
+      need(input$load > 0, "Waiting for data")
+    )
+    if (any(colnames(values$data) == "condition") ){ # I had to change the code 
+      #just for the new data set, which is different from all the others
+      # check if there are characters
+      if (any(sapply(values$data, is.character)) == TRUE) {
+  values$data[, sapply(values$data, is.character) == T] = lapply(values$data[, sapply(values$data, is.character) == T], 
+                                                 as.factor)
+} else {
+  values$data = values$data
+}
+      plot(values$data$tr ~ values$data$condition,
+           xlab = "Condition", ylab = "TR")
+    } else {
+      plot(values$data[, c(1:2)])
+    }
+  })
+
+  output$summary <- renderPrint({
+    validate(
+      need(input$load > 0, "Waiting for data")
+    )
+    if (any(colnames(values$data) == "condition") ){
+      summary(values$data[, c(2:3)])
+    } else {
+      summary(values$data[, c(1:2)])
+    }
+  })
+},
+
+
+  options = list(height = 800)
+)
+```
+
+
+## Let the users use their data: Code
+
+```{r echo = TRUE,eval=FALSE}
+shinyApp(
+
+  ui = fluidPage(
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(inputId = "dataset",
+                  label = "Choose a dataset:",
+                  choices = list("rock" = 1, 
+                                 "pressure" = 2,
+                                 "cars" = 3,
+                                 "I want to use my data!!" =4)), # we add an option
+      # Let me introduce you Mr. Conditional Panel
+      conditionalPanel(
+        condition = "input.dataset == '4'", # What is the condition for which I should show up?
+        # What should be displayed inside me once I show up?
+        fileInput("example",  # label for the server
+                  "", # no displayed label for users
+                  accept = c("csv")) # what format do we accept?
+      ),
+      actionButton("load", "Upload data")
+    ),
+
+    mainPanel(
+      plotOutput(
+        "graph"
+      ),
+      verbatimTextOutput(
+        "summary"
+      )
+    ) # display output
+  )
+),
+
+server = function(input, output){
+    values <- reactiveValues()
+  dataInput <- reactive({
+    if(input$dataset == 1){ # now we use the number associated with each dataset 
+      data <- rock
+    } else if (input$dataset == 2 ){
+      data <- pressure
+    } else if (input$dataset == 3) {
+      data <- cars
+    } else if (input$dataset == 4) {
+      data <- read.csv(input$example$datapath) # we call the input for the data 
+            #import by its label and we ask for the data path selected by the user
+    }
+  })
+  observeEvent(input$load, # we load the data set (whatever it is only once the 
+                                       #  user has hit the button)
+               {
+    values$data <- data.frame(dataInput())
+  })
+
+  output$graph <- renderPlot({
+    validate(
+      need(input$load > 0, "Waiting for data")
+    )
+    if (any(colnames(values$data) == "condition") ){ # I had to change the code 
+      #just for the new data set, which is different from all the others
+      # check if there are characters
+      if (any(sapply(values$data, is.character)) == TRUE) {
+  values$data[, sapply(values$data, is.character) == T] = lapply(values$data[, sapply(values$data, is.character) == T], 
+                                                 as.factor)
+} else {
+  values$data = values$data
+}
+      plot(values$data$tr ~ values$data$condition,
+           xlab = "Condition", ylab = "TR")
+    } else {
+      plot(values$data[, c(1:2)])
+    }
+  })
+
+  output$summary <- renderPrint({
+    validate(
+      need(input$load > 0, "Waiting for data")
+    )
+    if (any(colnames(values$data) == "condition") ){
+      summary(values$data[, c(2:3)])
+    } else {
+      summary(values$data[, c(1:2)])
+    }
+  })
+},
+
+
+  options = list(height = 800)
+)
+```
+
+## Code has to be fluid and adapt to everything 
+
+```{r, out.width = "35%", fig.align='center', echo = FALSE}
+knitr::include_graphics("img/liquid-cats.jpg")
+```
+
+
+We have the code for uploading a data frame. 
+
+The code  is designed to work for that specific data frame 
+
+If only we had a way to explore the data frame columns and choose the ones we would like to plot `r emoji("thinking")`
+
+
+
+## Practice
+
+```{r echo=FALSE, eval=TRUE}
+shinyApp(
+
+ ui = fluidPage(
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(inputId = "dataset",
+                  label = "Choose a dataset:",
+                  choices = list("rock" = 1,
+                                 "pressure" = 2,
+                                 "cars" = 3,
+                                 "I want to use my data!!" =4)),
+      
+      conditionalPanel(
+        condition = "input.dataset == '4'",
+        fileInput("example",
+                  "", accept = c("csv"))
+      ), 
+      actionButton("load", "Upload data"), # This is the button for uploading 
+                                            # the data
+      conditionalPanel(                    # It appears only when the data are 
+        condition = "input.load >= '1'",   # loaded
+        uiOutput("var1"),                 # contains the name for variable 1
+        uiOutput("var2"),                 # contains the name for variable 2
+        actionButton("select", "Select & Display") # This is the button for 
+      ),                              # selecting the variables and actually see
+                                      # something
+    ),
+    
+    mainPanel(
+      plotOutput(
+        "graph"
+      ),
+      verbatimTextOutput(
+        "summary"
+      )
+    ) # display output
+  )
+),
+
+server = function(input, output){
+  values <- reactiveValues()
+  dataInput <- reactive({
+    if(input$dataset == 1){
+      data <- rock
+    } else if (input$dataset == 2 ){
+      data <- pressure
+    } else if (input$dataset == 3) {
+      data <- cars
+    } else if (input$dataset == 4) {
+      data <- read.csv(input$example$datapath)
+    }
+  })
+  observeEvent(input$load, {
+    values$data <- data.frame(dataInput())
+    # check the characters
+    if (any(sapply(values$data, is.character)) == TRUE) {
+      values$data[, sapply(values$data, is.character) == T] = lapply(values$data[, sapply(values$data, is.character) == T], as.factor)
+    } else {
+      values$data = values$data
+      }
+  })
+  
+  output$var1 <- renderUI({    # remember variable 1? here it is how we extract it
+    nam <- colnames(values$data) # from the data set
+    selectInput("var1", label = "Select x:", # create the input
+                choices = c(nam), multiple = FALSE,
+                selected = nam[1])
+  })
+  
+  output$var2 <- renderUI({
+    nam2 <- colnames(values$data) # create the input for variable 2
+    selectInput("var2", label = "Select y:",
+                choices = c(nam2), multiple = FALSE,
+                selected = nam2[1])
+  })
+  
+  newdata <- observeEvent(input$select, # use observe event so that the app will 
+                          { # wait for you to decide before acting
+                            # Besides, you're creating a new (smaller) object
+                            values$df <- values$data[c(input$var1, input$var2)]
+                          })
+  output$graph <- renderPlot({
+    validate(
+      need(input$select > 0, "Waiting for data") # I changed the validation from
+    )                                        # load to select
+    
+    df <- values$df # store the new object into an R object
+    plot(df[, c(1:2)]) # use it normally
+
+
+  })
+
+  output$summary <- renderPrint({
+    validate(
+      need(input$select > 0, "Waiting for data")
+    ) 
+    df <- values$df # same 
+    summary(df[, c(1:2)])
+
+  })
+},
+
+
+  options = list(height = 800)
+)
+
+```
+
+
+## Code
+
+```{r echo=TRUE, eval=FALSE}
+ui = fluidPage(
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(inputId = "dataset",
+                  label = "Choose a dataset:",
+                  choices = list("rock" = 1,
+                                 "pressure" = 2,
+                                 "cars" = 3,
+                                 "I want to use my data!!" =4)),
+      
+      conditionalPanel(
+        condition = "input.dataset == '4'",
+        fileInput("example",
+                  "", accept = c("csv"))
+      ), 
+      actionButton("load", "Upload data"), # This is the button for uploading 
+                                            # the data
+      conditionalPanel(                    # It appears only when the data are 
+        condition = "input.load >= '1'",   # loaded
+        uiOutput("var1"),                 # contains the name for variable 1
+        uiOutput("var2"),                 # contains the name for variable 2
+        actionButton("select", "Select & Display") # This is the button for 
+      ),                              # selecting the variables and actually see
+                                      # something
+    ),
+    
+    mainPanel(
+      plotOutput(
+        "graph"
+      ),
+      verbatimTextOutput(
+        "summary"
+      )
+    ) # display output
+  )
+)
+
+server = function(input, output){
+  values <- reactiveValues()
+  dataInput <- reactive({
+    if(input$dataset == 1){
+      data <- rock
+    } else if (input$dataset == 2 ){
+      data <- pressure
+    } else if (input$dataset == 3) {
+      data <- cars
+    } else if (input$dataset == 4) {
+      data <- read.csv(input$example$datapath)
+    }
+  })
+  observeEvent(input$load, {
+    values$data <- data.frame(dataInput())
+    # check the characters
+    if (any(sapply(values$data, is.character)) == TRUE) {
+      values$data[, sapply(values$data, is.character) == T] = lapply(values$data[, sapply(values$data, is.character) == T], as.factor)
+    } else {
+      values$data = values$data
+      }
+  })
+  
+  output$var1 <- renderUI({    # remember variable 1? here it is how we extract it
+    nam <- colnames(values$data) # from the data set
+    selectInput("var1", label = "Select x:", # create the input
+                choices = c(nam), multiple = FALSE,
+                selected = nam[1])
+  })
+  
+  output$var2 <- renderUI({
+    nam2 <- colnames(values$data) # create the input for variable 2
+    selectInput("var2", label = "Select y:",
+                choices = c(nam2), multiple = FALSE,
+                selected = nam2[1])
+  })
+  
+  newdata <- observeEvent(input$select, # use observe event so that the app will 
+                          { # wait for you to decide before acting
+                            # Besides, you're creating a new (smaller) object
+                            values$df <- values$data[c(input$var1, input$var2)]
+                          })
+  output$graph <- renderPlot({
+    validate(
+      need(input$select > 0, "Waiting for data") # I changed the validation from
+    )                                        # load to select
+    
+    df <- values$df # store the new object into an R object
+    plot(df[, c(1:2)]) # use it normally
+
+
+  })
+
+  output$summary <- renderPrint({
+    validate(
+      need(input$select > 0, "Waiting for data")
+    ) 
+    df <- values$df # same 
+    summary(df[, c(1:2)])
+
+  })
+}
+shinyApp(ui, server)
+```
+
+

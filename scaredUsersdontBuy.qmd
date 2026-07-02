@@ -1,0 +1,142 @@
+---
+title: "Just...don't scare the users"
+author: "Ottavia M. Epifania"
+format: 
+  revealjs: 
+    page-layout: custom
+server: shiny
+---
+
+
+
+## Don't scare them :)
+
+```{r}
+#| panel: sidebar
+selectInput(inputId = "dataset",
+                    label = "Choose a dataset:",
+                    choices = list("rock" = 1, 
+                                   "pressure" = 2,
+                                   "cars" = 3))
+actionButton("load", "Select dataset")
+```
+
+```{r}
+#| panel: fill
+plotOutput("graph") 
+verbatimTextOutput("summary")
+```
+
+```{r out.width="80%"}
+#| context: server
+values <- reactiveValues()
+    dataInput <- reactive({
+      if(input$dataset == 1){
+        data <- rock
+      } else if (input$dataset == 2 ){
+        data <- pressure
+      } else if (input$dataset == 3) {
+        data <- cars
+      }
+    })
+    observeEvent(input$load, {
+      values$data <- data.frame(dataInput())
+    })
+
+output$graph <- renderPlot({
+    validate(need(input$load > 0, 
+           "Waiting for data") 
+    )
+    plot(values$data[, c(1:2)])
+  })
+
+output$summary <- renderPrint({
+    validate(need(input$load > 0, "Waiting for data") 
+    )
+    summary(values$data)
+  })
+```
+
+## The code 
+
+
+::: {.panel-tabset}
+
+## UI 
+
+```{r}
+#| echo: true
+ui <- fluidPage( # same as before
+   sidebarLayout(
+    sidebarPanel(
+      selectInput(inputId = "dataset",
+                  label = "Choose a dataset:",
+                  choices = list("rock" = 1, 
+                                   "pressure" = 2,
+                                   "cars" = 3)),
+
+      actionButton("load", 
+                   "Upload data")
+      ),
+    mainPanel(
+      plotOutput(
+        "graph"
+      ),
+      verbatimTextOutput(
+        "summary"
+      )
+    ) # display output
+  )
+)
+```
+
+
+## Server 
+
+```{r}
+#| echo: true
+server <- function(input, output){
+   values <- reactiveValues()
+    dataInput <- reactive({
+      if(input$dataset == 1){
+        data <- rock
+      } else if (input$dataset == 2 ){
+        data <- pressure
+      } else if (input$dataset == 3) {
+        data <- cars
+      }
+    })
+    observeEvent(input$load, {
+      values$data <- data.frame(dataInput())
+    })
+
+  output$graph <- renderPlot({
+    validate( 
+      need(input$load > 0, 
+           "Waiting for data") 
+    )
+    plot(values$data[, c(1:2)])
+  })
+
+  output$summary <- renderPrint({
+    validate(
+      need(input$load > 0, "Waiting for data") 
+    )
+    summary(values$data)
+  })
+}
+```
+
+
+## Together
+
+
+```{r}
+#| echo: true
+#| eval: false
+shinyApp(ui, server)
+```
+
+:::
+
+

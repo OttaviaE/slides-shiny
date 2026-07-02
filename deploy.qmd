@@ -1,0 +1,53 @@
+---
+title: "Spread the shine"
+author: "Ottavia M. Epifania"
+format: 
+  revealjs: 
+    page-layout: custom
+    theme: sky
+#server: shiny
+---
+
+# The server 
+
+## 
+
+<br>
+
+- Many servers exist, [this article](https://shiny.posit.co/r/articles/share/shiny-server/) provides an overview on the available ones 
+
+- If you feel lucky, you can set a server from scratch (choose your own adventure). Here's an option with [Digital Ocean](https://deanattali.com/2015/05/09/setup-rstudio-shiny-server-digital-ocean/) provided by Dean Attali <3
+
+- Just use [shinyapps.io](https://www.shinyapps.io/)
+
+
+## shinyapps.io 
+
+You need to create an account (also by linking it to your GitHub profile, gmail and whatsoever)
+
+Just follow the instructions!
+
+![](www/shinyapps.png)
+
+
+## `rconnect`
+
+<br>
+
+
+1. `install.packages("rsconnect")` 
+
+2. Follow the authorization instructions 
+
+3. Deploy the app `rsconnect::deployApp('path/to/your/app')`
+
+## path/to/your/app
+
+Needs to be a folder containing a UI.R and a server.R
+
+        `rsconnect::deployApp('interactive-graphs')`
+
+The folder `rsconnect` should appear in the directory of app `interactive-graphs`
+
+
+![](www/deploy.png)
