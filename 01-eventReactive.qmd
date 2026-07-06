@@ -1,0 +1,162 @@
+---
+title: "Slow and steady wins the race - `eventReactive()`"
+author: "Ottavia M. Epifania"
+format: 
+  revealjs: 
+    page-layout: custom
+    theme: serif
+server: shiny
+code-annotations: hover
+---
+
+
+# `eventReactive()` and `actionButton()`
+
+## 
+
+These functions are usually employed together: 
+
+:::{.callout-note}
+## The action button
+
+```{r}
+#| echo: true
+actionButton("start", 
+             "Press here to do something")
+```
+
+:::
+
+:::{.callout-note}
+
+## The action button controlling the actions
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "|3-4|7-9|"
+ui = fluidPage(
+  [...]
+  actionButton("start",  # <1> 
+             "Press here to do something") #<1>
+)
+server = server(input, output) {
+  data = eventReactive(input$start, # <2>
+                    [...]   # <3>
+                       )
+}
+```
+
+1. Define the button label to be used in the server 
+2. Define the action after which the button event becomes reactive
+3. Code and operations to be performed after the button has been pressed
+:::
+
+## An example
+
+```{r}
+#| panel: sidebar
+selectInput(inputId = "dataset",
+                    label = "Choose a dataset:",
+                    choices = list("rock" = 1, 
+                                   "pressure" = 2,
+                                   "cars" = 3))
+actionButton("load", "Select dataset")
+```
+
+```{r}
+#| panel: fill
+plotOutput("graph") 
+verbatimTextOutput("summary")
+```
+
+```{r}
+#| context: server
+dataInput = eventReactive(input$load, {
+      if(input$dataset == 1){
+        data <- rock
+      } else if (input$dataset == 2 ){
+        data <- pressure
+      } else if (input$dataset == 3) {
+        data <- cars
+      } 
+    })
+
+output$graph <- renderPlot({
+      data = dataInput()
+      plot(data[, c(1:2)])
+    })
+    
+output$summary <- renderPrint({
+      data = dataInput()
+      summary(data[, c(1:2)])
+    })
+```
+
+## The code 
+
+
+::: {.panel-tabset}
+
+## UI 
+
+```{r}
+#| echo: true
+#| code-line-numbers: "|8|"
+ui <- fluidPage(
+    sidebarLayout(sidebarPanel(
+        selectInput(inputId = "dataset",
+                    label = "Choose a dataset:",
+                    choices = list("rock" = 1, 
+                                   "pressure" = 2,
+                                   "cars" = 3)), 
+      actionButton("load", "Select dataset")
+      ),
+mainPanel(
+      plotOutput(
+          "graph"   
+        ), 
+      verbatimTextOutput( 
+          "summary"   
+      ))))
+```
+
+
+## Server 
+
+```{r}
+#| echo: true
+#| code-line-numbers: "|2-11|13,17"
+server <- function(input, output){
+    dataInput <- eventReactive(input$load, {
+      if(input$dataset == 1){
+        data <- rock
+      } else if (input$dataset == 2 ){
+        data <- pressure
+      } else if (input$dataset == 3) {
+        data <- cars
+      } 
+    } 
+    )
+output$graph <- renderPlot({
+      data <- dataInput()
+      plot(data[, c(1:2)])
+    })
+output$summary <- renderPrint({
+      data <- dataInput()
+      summary(data[, c(1:2)])
+    })
+  }
+```
+
+
+## Together
+
+
+```{r}
+#| echo: true
+#| eval: false
+shinyApp(ui, server)
+```
+
+:::
