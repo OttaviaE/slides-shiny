@@ -6,9 +6,9 @@ ui = fluidPage(
     sidebarPanel(
       selectInput(inputId = "dataset",
                   label = "Choose a dataset:",
-                  choices = list("rock" = 1, 
-                                 "pressure" = 2,
-                                 "cars" = 3)),
+                  choices = c("rock", 
+                                 "pressure",
+                                 "cars")),
       actionButton("load", "Select dataset"),
     ), 
     mainPanel(plotOutput("graph"),
@@ -19,14 +19,11 @@ ui = fluidPage(
 )
 
 server = function(input, output){
-  dataInput = eventReactive(input$load, {
-    if(input$dataset == 1){
-      data <- rock
-    } else if (input$dataset == 2 ){
-      data <- pressure
-    } else if (input$dataset == 3) {
-      data <- cars
-    } 
+  dataInput <- eventReactive(input$load, {
+    switch(input$dataset,
+           rock = rock,
+           pressure = pressure,
+           cars = cars)
   })
   output$graph <- renderPlot({
     df = dataInput()

@@ -237,19 +237,50 @@ Ottavia M. Epifania
 </div>
 <div id="tabset-1-2">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="|1-7|8-12|13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>ui <span class="ot">=</span> <span class="fu">fluidPage</span>(<span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">"mySelection"</span>, </span>
-<span id="cb1-2"><a href=""></a>                          <span class="at">label =</span> <span class="fu">h3</span>(<span class="st">"Select box"</span>),</span>
-<span id="cb1-3"><a href=""></a>                          <span class="at">choices =</span> <span class="fu">list</span>(<span class="st">"Choice 1"</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"Choice 2"</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">"Choice 3"</span> <span class="ot">=</span> <span class="dv">3</span>),</span>
-<span id="cb1-4"><a href=""></a>                          <span class="at">selected =</span> <span class="dv">1</span>),</span>
-<span id="cb1-5"><a href=""></a>         <span class="fu">verbatimTextOutput</span>(</span>
-<span id="cb1-6"><a href=""></a>           <span class="at">outputId =</span> <span class="st">"myOutput"</span></span>
-<span id="cb1-7"><a href=""></a>         ))</span>
-<span id="cb1-8"><a href=""></a>server <span class="ot">=</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb1-9"><a href=""></a>           output<span class="sc">$</span>myOutput <span class="ot">=</span> <span class="fu">renderPrint</span>({</span>
-<span id="cb1-10"><a href=""></a>             <span class="fu">paste</span>(<span class="fu">paste</span>(<span class="st">"This is my choice"</span>), input<span class="sc">$</span>mySelection)</span>
-<span id="cb1-11"><a href=""></a>           })</span>
-<span id="cb1-12"><a href=""></a>}</span>
-<span id="cb1-13"><a href=""></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-2" data-code-line-numbers="|1-7|8-12|13"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1"></a>ui <span class="ot">=</span> <span class="fu">fluidPage</span>(<span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">"mySelection"</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2">2</button><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2"></a>                          <span class="at">label =</span> <span class="fu">h3</span>(<span class="st">"Select box"</span>),</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3">3</button><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3"></a>                          <span class="at">choices =</span> <span class="fu">list</span>(<span class="st">"Choice 1"</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"Choice 2"</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">"Choice 3"</span> <span class="ot">=</span> <span class="dv">3</span>),</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="4">4</button><span id="annotated-cell-2-4" class="code-annotation-target"><a href="#annotated-cell-2-4"></a>                          <span class="at">selected =</span> <span class="dv">1</span>),</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="5">5</button><span id="annotated-cell-2-5" class="code-annotation-target"><a href="#annotated-cell-2-5"></a>         <span class="fu">verbatimTextOutput</span>( <span class="at">outputId =</span> <span class="st">"myOutput"</span>)</span>
+<span id="annotated-cell-2-6"><a href="#annotated-cell-2-6"></a>         )</span>
+<span id="annotated-cell-2-7"><a href="#annotated-cell-2-7"></a>server <span class="ot">=</span> <span class="cf">function</span>(input, output) {</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="6">6</button><span id="annotated-cell-2-8" class="code-annotation-target"><a href="#annotated-cell-2-8"></a>           output<span class="sc">$</span>myOutput <span class="ot">=</span> <span class="fu">renderPrint</span>({</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="7">7</button><span id="annotated-cell-2-9" class="code-annotation-target"><a href="#annotated-cell-2-9"></a>             <span class="fu">paste</span>(<span class="fu">paste</span>(<span class="st">"This is my choice"</span>),  input<span class="sc">$</span>mySelection)</span>
+<span id="annotated-cell-2-10"><a href="#annotated-cell-2-10"></a>           })</span>
+<span id="annotated-cell-2-11"><a href="#annotated-cell-2-11"></a>}</span>
+<span id="annotated-cell-2-12"><a href="#annotated-cell-2-12"></a><span class="fu">shinyApp</span>(ui, server)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">Define the ID of the input in the UI (internal use)</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="2" data-code-annotation="2">Define the label of the element (external use)</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="3">Options (labels) and their internal labels</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="4" data-code-annotation="4">Default selected option</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="5" data-code-annotation="5">Define the label (internal use) of the outuput in the UI (where the results elaborated by the server will be stored)</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="8" data-code-annotation="6">Function in the server to render the results (consistent with the UI definition)</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="7">7</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="9" data-code-annotation="7">Call for the label of the input in the UI</span>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 </div>
@@ -258,19 +289,35 @@ Ottavia M. Epifania
 <section id="app-layout" class="slide level2">
 <h2>App layout</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">fluidPage</span>()   <span class="co"># rows with columns within 12-unit wide grid</span></span>
-<span id="cb2-2"><a href=""></a></span>
-<span id="cb2-3"><a href=""></a><span class="fu">fluidRow</span>(      <span class="co"># custom the page in two columns</span></span>
-<span id="cb2-4"><a href=""></a>  <span class="fu">column</span>(<span class="dv">6</span>, ), <span class="co"># of width 6 out of the 12-unit</span></span>
-<span id="cb2-5"><a href=""></a>  <span class="fu">column</span>(<span class="dv">6</span>, )  <span class="co"># on a single row</span></span>
-<span id="cb2-6"><a href=""></a>)</span>
-<span id="cb2-7"><a href=""></a></span>
-<span id="cb2-8"><a href=""></a><span class="fu">sidebarLayout</span>(     <span class="co"># automatic layout with</span></span>
-<span id="cb2-9"><a href=""></a><span class="fu">sidebarPanel</span>(...), <span class="co"># sidebar and</span></span>
-<span id="cb2-10"><a href=""></a><span class="fu">mainPanel</span>(...)    <span class="co"># main area</span></span>
-<span id="cb2-11"><a href=""></a>)</span>
-<span id="cb2-12"><a href=""></a></span>
-<span id="cb2-13"><a href=""></a><span class="co"># and many more!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-1" data-code-line-numbers="|1|3-6|8-11"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1"></a><span class="fu">fluidPage</span>()</span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3"></a><span class="fu">fluidRow</span>(</span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4"></a>  <span class="fu">column</span>(<span class="dv">6</span>, ),</span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5"></a>  <span class="fu">column</span>(<span class="dv">6</span>, )</span>
+<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6"></a>)</span>
+<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3">3</button><span id="annotated-cell-1-8" class="code-annotation-target"><a href="#annotated-cell-1-8"></a><span class="fu">sidebarLayout</span>(</span>
+<span id="annotated-cell-1-9"><a href="#annotated-cell-1-9"></a><span class="fu">sidebarPanel</span>(...),</span>
+<span id="annotated-cell-1-10"><a href="#annotated-cell-1-10"></a><span class="fu">mainPanel</span>(...)</span>
+<span id="annotated-cell-1-11"><a href="#annotated-cell-1-11"></a>)</span>
+<span id="annotated-cell-1-12"><a href="#annotated-cell-1-12"></a></span>
+<span id="annotated-cell-1-13"><a href="#annotated-cell-1-13"></a><span class="co"># and many more!</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="1" data-code-annotation="1">Rows with columns within 12-unit wide grid</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="3,4,5,6" data-code-annotation="2">Custom the page in two columns of width 6 out of the 12-unit on a single row</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="8,9,10,11" data-code-annotation="3">Automatic layout with sidebar and main area</span>
+</dd>
+</dl>
+</div>
 </div>
 <p><a href="https://shiny.rstudio.com/gallery/">Complete list</a> (look for “Application layout”)</p>
 </section>
@@ -300,63 +347,76 @@ Ottavia M. Epifania
 </div>
 </div>
 </section>
-<section id="code" class="slide level2">
-<h2>Code</h2>
+<section id="section-1" class="slide level2 smaller">
+<h2></h2>
 <p><code>appExamples/first-app.R</code></p>
 <div class="panel-tabset">
 <ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">UI</a></li><li><a href="#tabset-2-2">Server</a></li><li><a href="#tabset-2-3">Together</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="|1,18|2,17|3,8|9,16|4-6|10-12|13-15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb3-2"><a href=""></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb3-3"><a href=""></a>    <span class="fu">sidebarPanel</span>(</span>
-<span id="cb3-4"><a href=""></a>      <span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">"dataset"</span>, <span class="co"># name of the input (for the server)</span></span>
-<span id="cb3-5"><a href=""></a>                  <span class="at">label =</span> <span class="st">"Choose a dataset:"</span>, <span class="co"># name of the input (for the users)</span></span>
-<span id="cb3-6"><a href=""></a>                  <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">"rock"</span>, <span class="st">"pressure"</span>, <span class="st">"cars"</span>)) <span class="co"># options (for  both </span></span>
-<span id="cb3-7"><a href=""></a>                                                          <span class="co"># users &amp; server)</span></span>
-<span id="cb3-8"><a href=""></a>    ),</span>
-<span id="cb3-9"><a href=""></a>    <span class="fu">mainPanel</span>(</span>
-<span id="cb3-10"><a href=""></a>      <span class="fu">plotOutput</span>( <span class="co"># define the graphical output (we're telling R that this output </span></span>
-<span id="cb3-11"><a href=""></a>        <span class="st">"graph"</span>   <span class="co"># container must contain a plot)</span></span>
-<span id="cb3-12"><a href=""></a>      ),</span>
-<span id="cb3-13"><a href=""></a>      <span class="fu">verbatimTextOutput</span>( <span class="co"># define the verbatim output (we're telling R that</span></span>
-<span id="cb3-14"><a href=""></a>        <span class="st">"summary"</span>   <span class="co"># this output container must contain a Verbatim output)</span></span>
-<span id="cb3-15"><a href=""></a>      )</span>
-<span id="cb3-16"><a href=""></a>    ) </span>
-<span id="cb3-17"><a href=""></a>  )</span>
-<span id="cb3-18"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-3" data-code-line-numbers="|3,7|8,11|4-6|9|10"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="annotated-cell-3-3"><a href="#annotated-cell-3-3"></a>    <span class="fu">sidebarPanel</span>(    </span>
+<span id="annotated-cell-3-4"><a href="#annotated-cell-3-4"></a>      <span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">"dataset"</span>,  </span>
+<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5"></a>                  <span class="at">label =</span> <span class="st">"Choose a dataset:"</span>, </span>
+<span id="annotated-cell-3-6"><a href="#annotated-cell-3-6"></a>                  <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">"rock"</span>, <span class="st">"pressure"</span>, <span class="st">"cars"</span>)) </span>
+<span id="annotated-cell-3-7"><a href="#annotated-cell-3-7"></a>    ),</span>
+<span id="annotated-cell-3-8"><a href="#annotated-cell-3-8"></a>    <span class="fu">mainPanel</span>(</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-9" class="code-annotation-target"><a href="#annotated-cell-3-9"></a>      <span class="fu">plotOutput</span>( <span class="st">"graph"</span>  ),</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2">2</button><span id="annotated-cell-3-10" class="code-annotation-target"><a href="#annotated-cell-3-10"></a>      <span class="fu">verbatimTextOutput</span>( <span class="st">"summary"</span>)</span>
+<span id="annotated-cell-3-11"><a href="#annotated-cell-3-11"></a>    ) </span>
+<span id="annotated-cell-3-12"><a href="#annotated-cell-3-12"></a>  )</span>
+<span id="annotated-cell-3-13"><a href="#annotated-cell-3-13"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="9" data-code-annotation="1">Define that specific type of output labeled “graph” is a graph</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="10" data-code-annotation="2">Define that specific type of output labeled “summary” is a code</span>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 <div id="tabset-2-2">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="|1,22|2-11|12-21|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output){</span>
-<span id="cb4-2"><a href=""></a>  output<span class="sc">$</span>graph <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb4-3"><a href=""></a>    <span class="cf">if</span>(input<span class="sc">$</span>dataset <span class="sc">==</span> <span class="st">"rock"</span>){ <span class="co"># call the input and its options with their label</span></span>
-<span id="cb4-4"><a href=""></a>      data <span class="ot">&lt;-</span> rock</span>
-<span id="cb4-5"><a href=""></a>    } <span class="cf">else</span> <span class="cf">if</span> (input<span class="sc">$</span>dataset <span class="sc">==</span> <span class="st">"pressure"</span> ){</span>
-<span id="cb4-6"><a href=""></a>      data <span class="ot">&lt;-</span> pressure</span>
-<span id="cb4-7"><a href=""></a>    } <span class="cf">else</span> <span class="cf">if</span> (input<span class="sc">$</span>dataset <span class="sc">==</span> <span class="st">"cars"</span>) {</span>
-<span id="cb4-8"><a href=""></a>      data <span class="ot">&lt;-</span> cars</span>
-<span id="cb4-9"><a href=""></a>    }</span>
-<span id="cb4-10"><a href=""></a>    <span class="fu">plot</span>(data[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)])</span>
-<span id="cb4-11"><a href=""></a>  })</span>
-<span id="cb4-12"><a href=""></a>output<span class="sc">$</span>summary <span class="ot">&lt;-</span> <span class="fu">renderPrint</span>({</span>
-<span id="cb4-13"><a href=""></a>    <span class="cf">if</span>(input<span class="sc">$</span>dataset <span class="sc">==</span> <span class="st">"rock"</span>){</span>
-<span id="cb4-14"><a href=""></a>      data <span class="ot">&lt;-</span> rock</span>
-<span id="cb4-15"><a href=""></a>    } <span class="cf">else</span> <span class="cf">if</span> (input<span class="sc">$</span>dataset <span class="sc">==</span> <span class="st">"pressure"</span> ){</span>
-<span id="cb4-16"><a href=""></a>      data <span class="ot">&lt;-</span> pressure</span>
-<span id="cb4-17"><a href=""></a>    } <span class="cf">else</span> <span class="cf">if</span> (input<span class="sc">$</span>dataset <span class="sc">==</span> <span class="st">"cars"</span>) {</span>
-<span id="cb4-18"><a href=""></a>      data <span class="ot">&lt;-</span> cars</span>
-<span id="cb4-19"><a href=""></a>    }</span>
-<span id="cb4-20"><a href=""></a>    <span class="fu">summary</span>(data[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)])</span>
-<span id="cb4-21"><a href=""></a>  })</span>
-<span id="cb4-22"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-4" data-code-line-numbers="|2,8|9,15|3-7|10-14|7,14"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output){</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1">1</button><span id="annotated-cell-4-2" class="code-annotation-target"><a href="#annotated-cell-4-2"></a>  output<span class="sc">$</span>graph <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="annotated-cell-4-3"><a href="#annotated-cell-4-3"></a>   data <span class="ot">=</span>  <span class="cf">switch</span>(input<span class="sc">$</span>dataset,</span>
+<span id="annotated-cell-4-4"><a href="#annotated-cell-4-4"></a>           <span class="at">rock =</span> rock,</span>
+<span id="annotated-cell-4-5"><a href="#annotated-cell-4-5"></a>           <span class="at">pressure =</span> pressure,</span>
+<span id="annotated-cell-4-6"><a href="#annotated-cell-4-6"></a>           <span class="at">cars =</span> cars)</span>
+<span id="annotated-cell-4-7"><a href="#annotated-cell-4-7"></a>    <span class="fu">plot</span>(data[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)])</span>
+<span id="annotated-cell-4-8"><a href="#annotated-cell-4-8"></a>  })</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2">2</button><span id="annotated-cell-4-9" class="code-annotation-target"><a href="#annotated-cell-4-9"></a>output<span class="sc">$</span>summary <span class="ot">&lt;-</span> <span class="fu">renderPrint</span>({</span>
+<span id="annotated-cell-4-10"><a href="#annotated-cell-4-10"></a>   data <span class="ot">=</span>  <span class="cf">switch</span>(input<span class="sc">$</span>dataset,</span>
+<span id="annotated-cell-4-11"><a href="#annotated-cell-4-11"></a>           <span class="at">rock =</span> rock,</span>
+<span id="annotated-cell-4-12"><a href="#annotated-cell-4-12"></a>           <span class="at">pressure =</span> pressure,</span>
+<span id="annotated-cell-4-13"><a href="#annotated-cell-4-13"></a>           <span class="at">cars =</span> cars)</span>
+<span id="annotated-cell-4-14"><a href="#annotated-cell-4-14"></a>    <span class="fu">summary</span>(data[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)])</span>
+<span id="annotated-cell-4-15"><a href="#annotated-cell-4-15"></a>  })</span>
+<span id="annotated-cell-4-16"><a href="#annotated-cell-4-16"></a>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="2" data-code-annotation="1">renderPlot is the function in the server mirroring the plotOuput funtcion in the UI</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="9" data-code-annotation="2">renderPrint is the function in the server mirroring the verbatimTextOutput in the UI</span>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 <div id="tabset-2-3">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -367,136 +427,149 @@ Ottavia M. Epifania
 <h1>Don’t repeat yourself</h1>
 
 </section>
-<section id="the-shelf-solution" class="slide level2">
+<section id="the-shelf-solution" class="slide level2 smaller">
 <h2>The “shelf” solution</h2>
 <div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Server</a></li><li><a href="#tabset-3-2">UI</a></li><li><a href="#tabset-3-3">Together</a></li></ul>
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">UI</a></li><li><a href="#tabset-3-2">Server</a></li><li><a href="#tabset-3-3">Together</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="|2-11|12-14|15-20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output){ </span>
-<span id="cb6-2"><a href=""></a>values <span class="ot">&lt;-</span> <span class="fu">reactiveValues</span>() <span class="co"># create the shelf with reactive values </span></span>
-<span id="cb6-3"><a href=""></a>  dataInput <span class="ot">&lt;-</span> <span class="fu">reactive</span>({ <span class="co"># create a reactive environment (it reacts to whatever input receives)</span></span>
-<span id="cb6-4"><a href=""></a>    <span class="cf">if</span>(input<span class="sc">$</span>dataset <span class="sc">==</span> <span class="st">"rock"</span>){ <span class="co"># this part is the same as before</span></span>
-<span id="cb6-5"><a href=""></a>      data <span class="ot">&lt;-</span> rock</span>
-<span id="cb6-6"><a href=""></a>    } <span class="cf">else</span> <span class="cf">if</span> (input<span class="sc">$</span>dataset <span class="sc">==</span> <span class="st">"pressure"</span> ){</span>
-<span id="cb6-7"><a href=""></a>      data <span class="ot">&lt;-</span> pressure</span>
-<span id="cb6-8"><a href=""></a>    } <span class="cf">else</span> <span class="cf">if</span> (input<span class="sc">$</span>dataset <span class="sc">==</span> <span class="st">"cars"</span>) {</span>
-<span id="cb6-9"><a href=""></a>      data <span class="ot">&lt;-</span> cars</span>
-<span id="cb6-10"><a href=""></a>    }</span>
-<span id="cb6-11"><a href=""></a>  })</span>
-<span id="cb6-12"><a href=""></a><span class="fu">observe</span>({                      <span class="co"># ta-da, the shelf is in action. To make it works,telling R </span></span>
-<span id="cb6-13"><a href=""></a>    values<span class="sc">$</span>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">dataInput</span>()) <span class="co">#  it has to be called inside an observe function, </span></span>
-<span id="cb6-14"><a href=""></a>  })                                       <span class="co"># we're using a reactive object</span></span>
-<span id="cb6-15"><a href=""></a>output<span class="sc">$</span>graph <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb6-16"><a href=""></a>       <span class="fu">plot</span>(values<span class="sc">$</span>data[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)]) <span class="co"># call the shelf and you're all set</span></span>
-<span id="cb6-17"><a href=""></a>    })</span>
-<span id="cb6-18"><a href=""></a>output<span class="sc">$</span>summary <span class="ot">&lt;-</span> <span class="fu">renderPrint</span>({</span>
-<span id="cb6-19"><a href=""></a>    <span class="fu">summary</span>(values<span class="sc">$</span>data)</span>
-<span id="cb6-20"><a href=""></a>})</span>
-<span id="cb6-21"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb2-2"><a href=""></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb2-3"><a href=""></a>    <span class="fu">sidebarPanel</span>(</span>
+<span id="cb2-4"><a href=""></a>      <span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">"dataset"</span>,</span>
+<span id="cb2-5"><a href=""></a>                  <span class="at">label =</span> <span class="st">"Choose a dataset:"</span>, </span>
+<span id="cb2-6"><a href=""></a>                  <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">"rock"</span>, <span class="st">"pressure"</span>, <span class="st">"cars"</span>)) </span>
+<span id="cb2-7"><a href=""></a>    ),</span>
+<span id="cb2-8"><a href=""></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb2-9"><a href=""></a>      <span class="fu">plotOutput</span>(<span class="st">"graph"</span>),</span>
+<span id="cb2-10"><a href=""></a>      <span class="fu">verbatimTextOutput</span>(<span class="st">"summary"</span>)</span>
+<span id="cb2-11"><a href=""></a>    ) </span>
+<span id="cb2-12"><a href=""></a>  )</span>
+<span id="cb2-13"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-3-2">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co"># the UI didn't change at all</span></span>
-<span id="cb7-2"><a href=""></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb7-3"><a href=""></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb7-4"><a href=""></a>    <span class="fu">sidebarPanel</span>(</span>
-<span id="cb7-5"><a href=""></a>      <span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">"dataset"</span>,</span>
-<span id="cb7-6"><a href=""></a>                  <span class="at">label =</span> <span class="st">"Choose a dataset:"</span>, </span>
-<span id="cb7-7"><a href=""></a>                  <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">"rock"</span>, <span class="st">"pressure"</span>, <span class="st">"cars"</span>)) </span>
-<span id="cb7-8"><a href=""></a>                                                          </span>
-<span id="cb7-9"><a href=""></a>    ),</span>
-<span id="cb7-10"><a href=""></a>    <span class="fu">mainPanel</span>(</span>
-<span id="cb7-11"><a href=""></a>      <span class="fu">plotOutput</span>( </span>
-<span id="cb7-12"><a href=""></a>        <span class="st">"graph"</span>   </span>
-<span id="cb7-13"><a href=""></a>      ),</span>
-<span id="cb7-14"><a href=""></a>      <span class="fu">verbatimTextOutput</span>( </span>
-<span id="cb7-15"><a href=""></a>        <span class="st">"summary"</span>   </span>
-<span id="cb7-16"><a href=""></a>      )</span>
-<span id="cb7-17"><a href=""></a>    ) </span>
-<span id="cb7-18"><a href=""></a>  )</span>
-<span id="cb7-19"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-7" data-code-line-numbers="|2-8|9-11|13,16"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output){ </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1">1</button><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2"></a>values <span class="ot">&lt;-</span> <span class="fu">reactiveValues</span>()</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2">2</button><span id="annotated-cell-7-3" class="code-annotation-target"><a href="#annotated-cell-7-3"></a>  dataInput <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="annotated-cell-7-4"><a href="#annotated-cell-7-4"></a>     data <span class="ot">=</span>  <span class="cf">switch</span>(input<span class="sc">$</span>dataset,</span>
+<span id="annotated-cell-7-5"><a href="#annotated-cell-7-5"></a>           <span class="at">rock =</span> rock,</span>
+<span id="annotated-cell-7-6"><a href="#annotated-cell-7-6"></a>           <span class="at">pressure =</span> pressure,</span>
+<span id="annotated-cell-7-7"><a href="#annotated-cell-7-7"></a>           <span class="at">cars =</span> cars)</span>
+<span id="annotated-cell-7-8"><a href="#annotated-cell-7-8"></a>  })</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3">3</button><span id="annotated-cell-7-9" class="code-annotation-target"><a href="#annotated-cell-7-9"></a><span class="fu">observe</span>({</span>
+<span id="annotated-cell-7-10"><a href="#annotated-cell-7-10"></a>    values<span class="sc">$</span>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">dataInput</span>())</span>
+<span id="annotated-cell-7-11"><a href="#annotated-cell-7-11"></a>  })</span>
+<span id="annotated-cell-7-12"><a href="#annotated-cell-7-12"></a>output<span class="sc">$</span>graph <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="4">4</button><span id="annotated-cell-7-13" class="code-annotation-target"><a href="#annotated-cell-7-13"></a>       <span class="fu">plot</span>(values<span class="sc">$</span>data[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)])</span>
+<span id="annotated-cell-7-14"><a href="#annotated-cell-7-14"></a>    })</span>
+<span id="annotated-cell-7-15"><a href="#annotated-cell-7-15"></a>output<span class="sc">$</span>summary <span class="ot">&lt;-</span> <span class="fu">renderPrint</span>({</span>
+<span id="annotated-cell-7-16"><a href="#annotated-cell-7-16"></a>    <span class="fu">summary</span>(values<span class="sc">$</span>data[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)])</span>
+<span id="annotated-cell-7-17"><a href="#annotated-cell-7-17"></a>})</span>
+<span id="annotated-cell-7-18"><a href="#annotated-cell-7-18"></a>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="2" data-code-annotation="1">Define a variable as reactiveValues (i.e., a variable that reacts to what happen in the setting configuration of the UI)</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="3,4,5,6,7,8" data-code-annotation="2">Define the data as reacting to what happens in the UI</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="9,10,11" data-code-annotation="3">Link the reactive variable with the data input (i.e., create the shelf)</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="13,16" data-code-annotation="4">Use the shelf for the analysis</span>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 <div id="tabset-3-3">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="reactive" class="slide level2">
+<section id="reactive" class="slide level2 smaller">
 <h2><code>reactive</code>()`</h2>
 <div class="panel-tabset">
 <ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">UI</a></li><li><a href="#tabset-4-2">Server</a></li><li><a href="#tabset-4-3">Together</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="|8|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb9-2"><a href=""></a>    <span class="fu">sidebarLayout</span>(<span class="fu">sidebarPanel</span>(</span>
-<span id="cb9-3"><a href=""></a>        <span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">"dataset"</span>,</span>
-<span id="cb9-4"><a href=""></a>                    <span class="at">label =</span> <span class="st">"Choose a dataset:"</span>,</span>
-<span id="cb9-5"><a href=""></a>                    <span class="at">choices =</span> <span class="fu">list</span>(<span class="st">"rock"</span> <span class="ot">=</span> <span class="dv">1</span>, </span>
-<span id="cb9-6"><a href=""></a>                                   <span class="st">"pressure"</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb9-7"><a href=""></a>                                   <span class="st">"cars"</span> <span class="ot">=</span> <span class="dv">3</span>)), </span>
-<span id="cb9-8"><a href=""></a>      <span class="fu">actionButton</span>(<span class="st">"load"</span>, <span class="st">"Select dataset"</span>)</span>
-<span id="cb9-9"><a href=""></a>      ),</span>
-<span id="cb9-10"><a href=""></a><span class="fu">mainPanel</span>(</span>
-<span id="cb9-11"><a href=""></a>      <span class="fu">plotOutput</span>(</span>
-<span id="cb9-12"><a href=""></a>          <span class="st">"graph"</span>   </span>
-<span id="cb9-13"><a href=""></a>        ), </span>
-<span id="cb9-14"><a href=""></a>      <span class="fu">verbatimTextOutput</span>( </span>
-<span id="cb9-15"><a href=""></a>          <span class="st">"summary"</span>   </span>
-<span id="cb9-16"><a href=""></a>      ))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="|8|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>ui <span class="ot">=</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb4-2"><a href=""></a>    <span class="fu">sidebarLayout</span>(<span class="fu">sidebarPanel</span>(</span>
+<span id="cb4-3"><a href=""></a>        <span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">"dataset"</span>,</span>
+<span id="cb4-4"><a href=""></a>                    <span class="at">label =</span> <span class="st">"Choose a dataset:"</span>,</span>
+<span id="cb4-5"><a href=""></a>                    <span class="at">choices  =</span> <span class="fu">c</span>(<span class="st">"rock"</span>, <span class="st">"pressure"</span>, <span class="st">"cars"</span>))</span>
+<span id="cb4-6"><a href=""></a>      ),</span>
+<span id="cb4-7"><a href=""></a><span class="fu">mainPanel</span>(</span>
+<span id="cb4-8"><a href=""></a>      <span class="fu">plotOutput</span>(<span class="st">"graph"</span>), </span>
+<span id="cb4-9"><a href=""></a>      <span class="fu">verbatimTextOutput</span>( </span>
+<span id="cb4-10"><a href=""></a>          <span class="st">"summary"</span>   </span>
+<span id="cb4-11"><a href=""></a>      ))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-4-2">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="|2-11|13,17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output){</span>
-<span id="cb10-2"><a href=""></a>    dataInput <span class="ot">&lt;-</span> <span class="fu">eventReactive</span>(input<span class="sc">$</span>load, {</span>
-<span id="cb10-3"><a href=""></a>      <span class="cf">if</span>(input<span class="sc">$</span>dataset <span class="sc">==</span> <span class="dv">1</span>){</span>
-<span id="cb10-4"><a href=""></a>        data <span class="ot">&lt;-</span> rock</span>
-<span id="cb10-5"><a href=""></a>      } <span class="cf">else</span> <span class="cf">if</span> (input<span class="sc">$</span>dataset <span class="sc">==</span> <span class="dv">2</span> ){</span>
-<span id="cb10-6"><a href=""></a>        data <span class="ot">&lt;-</span> pressure</span>
-<span id="cb10-7"><a href=""></a>      } <span class="cf">else</span> <span class="cf">if</span> (input<span class="sc">$</span>dataset <span class="sc">==</span> <span class="dv">3</span>) {</span>
-<span id="cb10-8"><a href=""></a>        data <span class="ot">&lt;-</span> cars</span>
-<span id="cb10-9"><a href=""></a>      } </span>
-<span id="cb10-10"><a href=""></a>    } </span>
-<span id="cb10-11"><a href=""></a>    )</span>
-<span id="cb10-12"><a href=""></a>output<span class="sc">$</span>graph <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb10-13"><a href=""></a>      data <span class="ot">&lt;-</span> <span class="fu">dataInput</span>()</span>
-<span id="cb10-14"><a href=""></a>      <span class="fu">plot</span>(data[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)])</span>
-<span id="cb10-15"><a href=""></a>    })</span>
-<span id="cb10-16"><a href=""></a>output<span class="sc">$</span>summary <span class="ot">&lt;-</span> <span class="fu">renderPrint</span>({</span>
-<span id="cb10-17"><a href=""></a>      data <span class="ot">&lt;-</span> <span class="fu">dataInput</span>()</span>
-<span id="cb10-18"><a href=""></a>      <span class="fu">summary</span>(data[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)])</span>
-<span id="cb10-19"><a href=""></a>    })</span>
-<span id="cb10-20"><a href=""></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-10" data-code-line-numbers="|2-7|9,13"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-10-1"><a href="#annotated-cell-10-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output){</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1">1</button><span id="annotated-cell-10-2" class="code-annotation-target"><a href="#annotated-cell-10-2"></a>    dataInput <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="annotated-cell-10-3"><a href="#annotated-cell-10-3"></a>    data <span class="ot">=</span>  <span class="cf">switch</span>(input<span class="sc">$</span>dataset,</span>
+<span id="annotated-cell-10-4"><a href="#annotated-cell-10-4"></a>           <span class="at">rock =</span> rock,</span>
+<span id="annotated-cell-10-5"><a href="#annotated-cell-10-5"></a>           <span class="at">pressure =</span> pressure,</span>
+<span id="annotated-cell-10-6"><a href="#annotated-cell-10-6"></a>           <span class="at">cars =</span> cars)</span>
+<span id="annotated-cell-10-7"><a href="#annotated-cell-10-7"></a>    })</span>
+<span id="annotated-cell-10-8"><a href="#annotated-cell-10-8"></a>output<span class="sc">$</span>graph <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="2">2</button><span id="annotated-cell-10-9" class="code-annotation-target"><a href="#annotated-cell-10-9"></a>      data <span class="ot">&lt;-</span> <span class="fu">dataInput</span>()</span>
+<span id="annotated-cell-10-10"><a href="#annotated-cell-10-10"></a>      <span class="fu">plot</span>(data[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)])</span>
+<span id="annotated-cell-10-11"><a href="#annotated-cell-10-11"></a>    })</span>
+<span id="annotated-cell-10-12"><a href="#annotated-cell-10-12"></a>output<span class="sc">$</span>summary <span class="ot">&lt;-</span> <span class="fu">renderPrint</span>({</span>
+<span id="annotated-cell-10-13"><a href="#annotated-cell-10-13"></a>      data <span class="ot">&lt;-</span> <span class="fu">dataInput</span>()</span>
+<span id="annotated-cell-10-14"><a href="#annotated-cell-10-14"></a>      <span class="fu">summary</span>(data[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)])</span>
+<span id="annotated-cell-10-15"><a href="#annotated-cell-10-15"></a>    })</span>
+<span id="annotated-cell-10-16"><a href="#annotated-cell-10-16"></a>  }</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="2,3,4,5,6,7" data-code-annotation="1">Define the reactive dataset with the reactive function</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="9,13" data-code-annotation="2">Use the reactive dataset for the analysis</span>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 <div id="tabset-4-3">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 </section></section>
 <section>
-<section id="slow-and-steady-wins-the-race" class="title-slide slide level1 center">
-<h1>Slow and steady wins the race</h1>
+<section id="prevent-the-action" class="title-slide slide level1 center">
+<h1>Prevent the action</h1>
 
 </section>
-<section id="take-things-slowly-and-use-the-action-buttons" class="slide level2">
-<h2>Take things slowly and use the action buttons</h2>
-<p>There are two ways of using the action buttons:</p>
-<ol type="1">
-<li>Use <code>eventReactive()</code></li>
-<li>Use the shelf we have seen before and adding the action button</li>
-</ol>
+<section id="action-buttons" class="slide level2">
+<h2>Action buttons</h2>
+<p>They allow for conditioning a specific action to an event</p>
+<p>As such, the app will show the output only if a specific event is observed</p>
+<p>Both shelf and reactive solutions work with the action buttons</p>
+<p>We are studying the solution with the reactive functions because they are more common and used (more documentation is availble)</p>
 <p>
 <script type="application/shiny-prerendered" data-context="server">
 output$myOutput = renderPrint({
@@ -1000,6 +1073,158 @@ ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
             }
           });
         }
+            let selectedAnnoteEl;
+            const selectorForAnnotation = ( cell, annotation) => {
+              let cellAttr = 'data-code-cell="' + cell + '"';
+              let lineAttr = 'data-code-annotation="' +  annotation + '"';
+              const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+              return selector;
+            }
+            const selectCodeLines = (annoteEl) => {
+              const doc = window.document;
+              const targetCell = annoteEl.getAttribute("data-target-cell");
+              const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+              const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+              const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+              const lineIds = lines.map((line) => {
+                return targetCell + "-" + line;
+              })
+              let top = null;
+              let height = null;
+              let parent = null;
+              if (lineIds.length > 0) {
+                  //compute the position of the single el (top and bottom and make a div)
+                  const el = window.document.getElementById(lineIds[0]);
+                  top = el.offsetTop;
+                  height = el.offsetHeight;
+                  parent = el.parentElement.parentElement;
+                if (lineIds.length > 1) {
+                  const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+                  const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+                  height = bottom - top;
+                }
+                if (top !== null && height !== null && parent !== null) {
+                  // cook up a div (if necessary) and position it 
+                  let div = window.document.getElementById("code-annotation-line-highlight");
+                  if (div === null) {
+                    div = window.document.createElement("div");
+                    div.setAttribute("id", "code-annotation-line-highlight");
+                    div.style.position = 'absolute';
+                    parent.appendChild(div);
+                  }
+                  div.style.top = top - 2 + "px";
+                  div.style.height = height + 4 + "px";
+                  div.style.left = 0;
+                  let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+                  if (gutterDiv === null) {
+                    gutterDiv = window.document.createElement("div");
+                    gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                    gutterDiv.style.position = 'absolute';
+                    const codeCell = window.document.getElementById(targetCell);
+                    const gutter = codeCell.querySelector('.code-annotation-gutter');
+                    gutter.appendChild(gutterDiv);
+                  }
+                  gutterDiv.style.top = top - 2 + "px";
+                  gutterDiv.style.height = height + 4 + "px";
+                }
+                selectedAnnoteEl = annoteEl;
+              }
+            };
+            const unselectCodeLines = () => {
+              const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+              elementsIds.forEach((elId) => {
+                const div = window.document.getElementById(elId);
+                if (div) {
+                  div.remove();
+                }
+              });
+              selectedAnnoteEl = undefined;
+            };
+              // Handle positioning of the toggle
+          window.addEventListener(
+            "resize",
+            throttle(() => {
+              elRect = undefined;
+              if (selectedAnnoteEl) {
+                selectCodeLines(selectedAnnoteEl);
+              }
+            }, 10)
+          );
+          function throttle(fn, ms) {
+          let throttle = false;
+          let timer;
+            return (...args) => {
+              if(!throttle) { // first call gets through
+                  fn.apply(this, args);
+                  throttle = true;
+              } else { // all the others get throttled
+                  if(timer) clearTimeout(timer); // cancel #2
+                  timer = setTimeout(() => {
+                    fn.apply(this, args);
+                    timer = throttle = false;
+                  }, ms);
+              }
+            };
+          }
+            const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+            for (let i=0; i<annoteTargets.length; i++) {
+              const annoteTarget = annoteTargets[i];
+              const targetCell = annoteTarget.getAttribute("data-target-cell");
+              const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+              const contentFn = () => {
+                const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+                if (content) {
+                  const tipContent = content.cloneNode(true);
+                  tipContent.classList.add("code-annotation-tip-content");
+                  return tipContent.outerHTML;
+                }
+              }
+              const config = {
+                allowHTML: true,
+                content: contentFn,
+                onShow: (instance) => {
+                  selectCodeLines(instance.reference);
+                  instance.reference.classList.add('code-annotation-active');
+                  window.tippy.hideAll();
+                },
+                onHide: (instance) => {
+                  unselectCodeLines();
+                  instance.reference.classList.remove('code-annotation-active');
+                },
+                maxWidth: 300,
+                delay: [50, 0],
+                duration: [200, 0],
+                offset: [5, 10],
+                arrow: true,
+                appendTo: function(el) {
+                  return el.parentElement.parentElement.parentElement;
+                },
+                interactive: true,
+                interactiveBorder: 10,
+                theme: 'light-border',
+                placement: 'right',
+                popperOptions: {
+                  modifiers: [
+                  {
+                    name: 'flip',
+                    options: {
+                      flipVariations: false, // true by default
+                      allowedAutoPlacements: ['right'],
+                      fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                    },
+                  },
+                  {
+                    name: 'preventOverflow',
+                    options: {
+                      mainAxis: false,
+                      altAxis: false
+                    }
+                  }
+                  ]        
+                }      
+              };
+              window.tippy(annoteTarget, config); 
+            }
         const findCites = (el) => {
           const parentEl = el.parentElement;
           if (parentEl) {

@@ -4,7 +4,9 @@ author: "Ottavia M. Epifania"
 format: 
   revealjs: 
     page-layout: custom
-    theme: serif
+    theme: simple
+    slide-number:  c/t
+    show-slide-number: all
 server: shiny
 code-annotations: hover
 ---
@@ -93,8 +95,7 @@ output$summary <- renderPrint({
     })
 ```
 
-## The code 
-
+## {.smaller}
 
 ::: {.panel-tabset}
 
@@ -110,7 +111,7 @@ ui <- fluidPage(
                     choices = list("rock" = 1, 
                                    "pressure" = 2,
                                    "cars" = 3)), 
-      actionButton("load", "Select dataset")
+      actionButton("load", "Select dataset") # <1>
       ),
 mainPanel(
       plotOutput(
@@ -121,6 +122,7 @@ mainPanel(
       ))))
 ```
 
+1. Action button visible in the UI
 
 ## Server 
 
@@ -128,27 +130,30 @@ mainPanel(
 #| echo: true
 #| code-line-numbers: "|2-11|13,17"
 server <- function(input, output){
-    dataInput <- eventReactive(input$load, {
-      if(input$dataset == 1){
-        data <- rock
-      } else if (input$dataset == 2 ){
-        data <- pressure
-      } else if (input$dataset == 3) {
-        data <- cars
-      } 
-    } 
-    )
+    dataInput <- eventReactive(input$load, { # <1> 
+      if(input$dataset == 1){                # <2>
+        data <- rock          # <2>
+      } else if (input$dataset == 2 ){ # <2>
+        data <- pressure # <2>
+      } else if (input$dataset == 3) { # <2>
+        data <- cars # <2>
+      }  # <2>
+    }  # <2>
+    )# <2>
 output$graph <- renderPlot({
-      data <- dataInput()
+      data <- dataInput()  # <3>
       plot(data[, c(1:2)])
     })
 output$summary <- renderPrint({
-      data <- dataInput()
+      data <- dataInput()  # <3>
       summary(data[, c(1:2)])
     })
   }
 ```
 
+1. Use eventReactive to make the app "react" after a specific action (e.g., clicking on the action button)
+2. Normal code, in this case defining the specific dataset 
+3. Actually makes the dataset usable for the analysis
 
 ## Together
 

@@ -1,10 +1,10 @@
 ---
-title: "Fluid code :)"
+title: "Upload data and code adaptation"
 author: "Ottavia M. Epifania"
 format: 
   revealjs: 
     page-layout: custom
-    theme: serif
+    theme: simple
 server: shiny
 code-annotations: hover
 ---
@@ -55,7 +55,7 @@ The UI and the server need to communicate differently
 
 :::
 
-## The code 
+## {.smaller}
 
 ::: {.panel-tabset}
 
@@ -64,7 +64,7 @@ The UI and the server need to communicate differently
 ```{r}
 #| echo: true
 #| eval: false
-#| code-line-numbers: "|4-7|9|10-11|13"
+#| code-line-numbers: "|4-7|8|9-10|11"
 ui = fluidPage(
   sidebarLayout(
     sidebarPanel(
@@ -72,18 +72,14 @@ ui = fluidPage(
         radioButtons("sep",                          # <2>
                      "Choose column separator",      #  <2>
                      c(";" = ";", "," = ",")),      # <2>
-
-      actionButton("load", "Upload data"),         # <3>                                
+      actionButton("load", "Upload data"),         # <3>                
       uiOutput("x_ui"),  # <4>
       uiOutput("y_ui"),  # <4>
-      
  actionButton("analyze", "Analyze data")   # <5>
     ),
     
     mainPanel(
-      
       plotOutput("graph"),
-      
       verbatimTextOutput("summary")
     )
   )
@@ -95,6 +91,7 @@ ui = fluidPage(
 2. Specify the separator to be used in the read.csv function
 3. First action button to upload the dataset
 4. Define the UI container for the names of the dataset variables, taken from the dataset itself
+5. Second button that actually activates the selection of the selected columns and starts the analysis
 
 ## Server 
 
@@ -102,7 +99,7 @@ ui = fluidPage(
 ```{r}
 #| echo: true
 #| eval: false
-#| code-line-numbers: "|1|22-27|28-33|34-36|"
+#| code-line-numbers: "|1|5-7|8-15|16-23|25-28|"
 server <- function(input, output, session){
   dataInput <- eventReactive(input$load, {  # <1>
       read.csv(input$file$datapath, sep = input$sep) # <1>
@@ -117,7 +114,7 @@ server <- function(input, output, session){
       choices = vars(), # <3> 
       selected = vars()[1]  # <3> 
     )                  # <3> 
-  })
+  }) # <3>
   output$y_ui <- renderUI({ # <4>
     selectInput(           # <4>
       "y",                  # <4>
@@ -125,12 +122,12 @@ server <- function(input, output, session){
       choices = vars(),    # <4>
       selected = vars()[min(2, length(vars()))] # <4>
     )                     # <4>  
-  }) 
+  }) # <4>
   
   newdata <- eventReactive(input$analyze, {  # <5>
     df <- dataInput()                        # <5>
     df[, c(input$x, input$y), drop = FALSE]  # <5>
-  })  
+  })   #<5>
   # <5>
   output$graph <- renderPlot({
     df <- newdata()   
@@ -151,7 +148,7 @@ server <- function(input, output, session){
 }
 ```
 
-1. Define the reactive environment and import the correct dataaset with the dedicated function
+1. Define the reactive environment and import the correct dataset with the dedicated function
 2. Extract the column names to populate the ui setting configuration 
 3. Use the renderUI to actually populate the response options of the x variable
 4. Use the renderUI to actually populate the response options of the y variable

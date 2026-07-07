@@ -7,6 +7,7 @@ format:
     page-layout: custom
     theme: simple
 server: shiny
+code-annotations: hover
 ---
 
 # The very first app 
@@ -21,10 +22,10 @@ server: shiny
 
 ```{r}
 #| panel: center
-selectInput(inputId = "mySelection", 
-            label = h2("Select box"),
-    choices = list("Choice 1" = 1, "Choice 2" = 2, "Choice 3" = 3),
-    selected = 1)
+selectInput(inputId = "mySelection",  
+            label = h2("Select box"), 
+    choices = list("Choice 1" = 1, "Choice 2" = 2, "Choice 3" = 3), 
+    selected = 1) 
 verbatimTextOutput("myOutput")
 ```
 
@@ -43,21 +44,27 @@ output$myOutput = renderPrint({
 #| echo: true
 #| eval: false
 #| code-line-numbers: "|1-7|8-12|13"
-ui = fluidPage(selectInput(inputId = "mySelection", 
-                          label = h3("Select box"),
-                          choices = list("Choice 1" = 1, "Choice 2" = 2, "Choice 3" = 3),
-                          selected = 1),
-         verbatimTextOutput(
-           outputId = "myOutput"
-         ))
+ui = fluidPage(selectInput(inputId = "mySelection",  # <1>
+                          label = h3("Select box"),  # <2>
+                          choices = list("Choice 1" = 1, "Choice 2" = 2, "Choice 3" = 3), # <3>
+                          selected = 1), # <4>
+         verbatimTextOutput( outputId = "myOutput") # <5>
+         )
 server = function(input, output) {
-           output$myOutput = renderPrint({
-             paste(paste("This is my choice"), input$mySelection)
+           output$myOutput = renderPrint({ # <6>
+             paste(paste("This is my choice"),  input$mySelection) # <7>
            })
 }
 shinyApp(ui, server)
 ```
 
+1. Define the ID of the input in the UI (internal use)
+2. Define the label of the element (external use)
+3. Options (labels) and their internal labels
+4. Default selected option
+5. Define the label (internal use) of the outuput in the UI (where the results elaborated by the server will be stored)
+6. Function in the server to render the results (consistent with the UI definition)
+7. Call for the label of the input in the UI
 
 :::
 
@@ -65,20 +72,25 @@ shinyApp(ui, server)
 
 ```{r eval=FALSE}
 #| echo: true
-fluidPage()   # rows with columns within 12-unit wide grid
+#| code-line-numbers: "|1|3-6|8-11"
+fluidPage()   # <1> 
 
-fluidRow(      # custom the page in two columns
-  column(6, ), # of width 6 out of the 12-unit
-  column(6, )  # on a single row
-)
+fluidRow(      #  <2>
+  column(6, ), # <2> 
+  column(6, )  #  <2> 
+)   # <2>
 
-sidebarLayout(     # automatic layout with
-sidebarPanel(...), # sidebar and
-mainPanel(...)    # main area
-)
+sidebarLayout(    # <3> 
+sidebarPanel(...), # <3>  
+mainPanel(...)    # <3> 
+) # <3>
 
 # and many more!
 ```
+
+1. Rows with columns within 12-unit wide grid
+2. Custom the page in two columns of width 6 out of the 12-unit on a single row
+3. Automatic layout with sidebar and main area
 
 [Complete list](https://shiny.rstudio.com/gallery/) (look for "Application layout")
 
@@ -135,7 +147,7 @@ output$summary <- renderPrint({
 
 
 
-## Code
+## {.smaller}
 
 `appExamples/first-app.R`
 
@@ -145,57 +157,51 @@ output$summary <- renderPrint({
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "|1,18|2,17|3,8|9,16|4-6|10-12|13-15"
+#| code-line-numbers: "|3,7|8,11|4-6|9|10"
 ui <- fluidPage(
   sidebarLayout(
-    sidebarPanel(
-      selectInput(inputId = "dataset", # name of the input (for the server)
-                  label = "Choose a dataset:", # name of the input (for the users)
-                  choices = c("rock", "pressure", "cars")) # options (for  both 
-                                                          # users & server)
+    sidebarPanel(    
+      selectInput(inputId = "dataset",  
+                  label = "Choose a dataset:", 
+                  choices = c("rock", "pressure", "cars")) 
     ),
     mainPanel(
-      plotOutput( # define the graphical output (we're telling R that this output 
-        "graph"   # container must contain a plot)
-      ),
-      verbatimTextOutput( # define the verbatim output (we're telling R that
-        "summary"   # this output container must contain a Verbatim output)
-      )
+      plotOutput( "graph"  ), # <1> 
+      verbatimTextOutput( "summary") # <2>
     ) 
   )
 )
 ```
 
+1. Define that specific type of output labeled "graph" is a graph
+2. Define that specific type of output labeled "summary" is a code 
 
 ## Server
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "|1,22|2-11|12-21|"
+#| code-line-numbers: "|2,8|9,15|3-7|10-14|7,14"
 server <- function(input, output){
-  output$graph <- renderPlot({
-    if(input$dataset == "rock"){ # call the input and its options with their label
-      data <- rock
-    } else if (input$dataset == "pressure" ){
-      data <- pressure
-    } else if (input$dataset == "cars") {
-      data <- cars
-    }
+  output$graph <- renderPlot({  # <1>
+   data =  switch(input$dataset,
+           rock = rock,
+           pressure = pressure,
+           cars = cars)
     plot(data[, c(1:2)])
   })
-output$summary <- renderPrint({
-    if(input$dataset == "rock"){
-      data <- rock
-    } else if (input$dataset == "pressure" ){
-      data <- pressure
-    } else if (input$dataset == "cars") {
-      data <- cars
-    }
+output$summary <- renderPrint({ # <2>
+   data =  switch(input$dataset,
+           rock = rock,
+           pressure = pressure,
+           cars = cars)
     summary(data[, c(1:2)])
   })
 }
 ```
 
+
+1. renderPlot is the function in the server mirroring the plotOuput funtcion in the UI
+2. renderPrint is the function in the server mirroring the verbatimTextOutput in the UI
 
 ## Together
 
@@ -210,67 +216,64 @@ shinyApp(ui, server)
 
 # Don't repeat yourself
 
-## The "shelf" solution
+## The "shelf" solution {.smaller}
 
 ::: {.panel-tabset}
 
 
-## Server
-
-```{r}
-#| echo: true
-#| code-line-numbers: "|2-11|12-14|15-20"
-server <- function(input, output){ 
-values <- reactiveValues() # create the shelf with reactive values 
-  dataInput <- reactive({ # create a reactive environment (it reacts to whatever input receives)
-    if(input$dataset == "rock"){ # this part is the same as before
-      data <- rock
-    } else if (input$dataset == "pressure" ){
-      data <- pressure
-    } else if (input$dataset == "cars") {
-      data <- cars
-    }
-  })
-observe({                      # ta-da, the shelf is in action. To make it works,telling R 
-    values$data <- data.frame(dataInput()) #  it has to be called inside an observe function, 
-  })                                       # we're using a reactive object
-output$graph <- renderPlot({
-       plot(values$data[, c(1:2)]) # call the shelf and you're all set
-    })
-output$summary <- renderPrint({
-    summary(values$data)
-})
-}
-
-```
 
 
 ## UI
 
 ```{r}
 #| echo: true
-# the UI didn't change at all
 ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       selectInput(inputId = "dataset",
                   label = "Choose a dataset:", 
                   choices = c("rock", "pressure", "cars")) 
-                                                          
     ),
     mainPanel(
-      plotOutput( 
-        "graph"   
-      ),
-      verbatimTextOutput( 
-        "summary"   
-      )
+      plotOutput("graph"),
+      verbatimTextOutput("summary")
     ) 
   )
 )
 ```
 
 
+
+## Server
+
+```{r}
+#| echo: true
+#| code-line-numbers: "|2-8|9-11|13,16"
+server <- function(input, output){ 
+values <- reactiveValues()  # <1> 
+  dataInput <- reactive({   # <2>
+     data =  switch(input$dataset, # <2>
+           rock = rock, # <2>
+           pressure = pressure, # <2>
+           cars = cars) # <2>
+  }) # <2>
+observe({            # <3>          
+    values$data <- data.frame(dataInput())  # <3>
+  })                                       # <3>
+output$graph <- renderPlot({
+       plot(values$data[, c(1:2)])  # <4>
+    })
+output$summary <- renderPrint({
+    summary(values$data[, c(1:2)]) # <4>
+})
+}
+
+```
+
+1. Define a variable as reactiveValues (i.e., a variable that reacts to what happen in the setting configuration of the UI)
+2. Define the data as reacting to what happens in the UI
+3. Link the reactive variable with the data input (i.e., create the shelf)
+4. Use the shelf for the analysis
 
 ## Together
 
@@ -282,7 +285,7 @@ shinyApp(ui, server)
 
 :::
 
-## `reactive`()`
+## `reactive`()` {.smaller}
 
 
 ::: {.panel-tabset}
@@ -292,19 +295,14 @@ shinyApp(ui, server)
 ```{r}
 #| echo: true
 #| code-line-numbers: "|8|"
-ui <- fluidPage(
+ui = fluidPage(
     sidebarLayout(sidebarPanel(
         selectInput(inputId = "dataset",
                     label = "Choose a dataset:",
-                    choices = list("rock" = 1, 
-                                   "pressure" = 2,
-                                   "cars" = 3)), 
-      actionButton("load", "Select dataset")
+                    choices  = c("rock", "pressure", "cars"))
       ),
 mainPanel(
-      plotOutput(
-          "graph"   
-        ), 
+      plotOutput("graph"), 
       verbatimTextOutput( 
           "summary"   
       ))))
@@ -315,29 +313,27 @@ mainPanel(
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "|2-11|13,17"
+#| code-line-numbers: "|2-7|9,13"
 server <- function(input, output){
-    dataInput <- eventReactive(input$load, {
-      if(input$dataset == 1){
-        data <- rock
-      } else if (input$dataset == 2 ){
-        data <- pressure
-      } else if (input$dataset == 3) {
-        data <- cars
-      } 
-    } 
-    )
+    dataInput <- reactive({ # <1>
+    data =  switch(input$dataset, # <1> 
+           rock = rock,  # <1>
+           pressure = pressure, # <1> 
+           cars = cars) # <1>
+    }) # <1>
 output$graph <- renderPlot({
-      data <- dataInput()
+      data <- dataInput() # <2>
       plot(data[, c(1:2)])
     })
 output$summary <- renderPrint({
-      data <- dataInput()
+      data <- dataInput() # <2>
       summary(data[, c(1:2)])
     })
   }
 ```
 
+1. Define the reactive dataset with the reactive function
+2. Use the reactive dataset for the analysis
 
 ## Together
 
