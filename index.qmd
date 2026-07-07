@@ -1,0 +1,13 @@
+---
+title: "index"
+format: html
+---
+
+[basic shiny](00-shiny.html)
+
+[event reactive](01-eventReactive.html)
+
+[upload data](02-uploadData.html)
+
+[download](03-download.html)
+
