@@ -237,7 +237,7 @@ Ottavia M. Epifania
 </div>
 <div id="tabset-1-2">
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-2" data-code-line-numbers="|1-7|8-12|13"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1"></a>ui <span class="ot">=</span> <span class="fu">fluidPage</span>(<span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">"mySelection"</span>,</span>
+<div class="sourceCode cell-code" id="annotated-cell-2" data-code-line-numbers="|1-6|7-11|12"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1"></a>ui <span class="ot">=</span> <span class="fu">fluidPage</span>(<span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">"mySelection"</span>,</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2">2</button><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2"></a>                          <span class="at">label =</span> <span class="fu">h3</span>(<span class="st">"Select box"</span>),</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3">3</button><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3"></a>                          <span class="at">choices =</span> <span class="fu">list</span>(<span class="st">"Choice 1"</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"Choice 2"</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">"Choice 3"</span> <span class="ot">=</span> <span class="dv">3</span>),</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="4">4</button><span id="annotated-cell-2-4" class="code-annotation-target"><a href="#annotated-cell-2-4"></a>                          <span class="at">selected =</span> <span class="dv">1</span>),</span>
@@ -404,7 +404,7 @@ Ottavia M. Epifania
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-4" data-code-lines="2" data-code-annotation="1">renderPlot is the function in the server mirroring the plotOuput funtcion in the UI</span>
+<span data-code-cell="annotated-cell-4" data-code-lines="2" data-code-annotation="1">renderPlot is the function in the server mirroring the plotOuput function in the UI</span>
 </dd>
 <dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
 <dd>
@@ -649,7 +649,7 @@ ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
 <!--/html_preserve-->
 <!--html_preserve-->
 <script type="application/shiny-prerendered" data-context="execution_dependencies">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36]}},"value":[{"type":"character","attributes":{},"value":["base","bslib","cachem","cli","compiler","datasets","digest","evaluate","fastmap","graphics","grDevices","htmltools","httpuv","jquerylib","jsonlite","knitr","later","lifecycle","magrittr","memoise","methods","mime","promises","R6","Rcpp","rlang","rmarkdown","rstudioapi","sass","shiny","stats","tools","utils","xfun","xtable","yaml"]},{"type":"character","attributes":{},"value":["4.5.2","0.9.0","1.1.0","3.6.5","4.5.2","4.5.2","0.6.37","1.0.4","1.2.0","4.5.2","4.5.2","0.5.8.1","1.6.16","0.1.4","2.0.0","1.50","1.4.2","1.0.5","2.0.3","2.0.1","4.5.2","0.13","1.3.3","2.6.1","1.1.0","1.1.6","2.29","0.17.1","0.4.10","1.11.1","4.5.2","4.5.2","4.5.2","0.52","1.8-4","2.3.10"]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36]}},"value":[{"type":"character","attributes":{},"value":["base","bslib","cachem","cli","compiler","datasets","digest","evaluate","fastmap","graphics","grDevices","htmltools","httpuv","jquerylib","jsonlite","knitr","later","lifecycle","magrittr","memoise","methods","mime","promises","R6","Rcpp","rlang","rmarkdown","rstudioapi","sass","shiny","stats","tools","utils","xfun","xtable","yaml"]},{"type":"character","attributes":{},"value":["4.5.2","0.9.0","1.1.0","3.6.5","4.5.2","4.5.2","0.6.37","1.0.4","1.2.0","4.5.2","4.5.2","0.5.8.1","1.6.16","0.1.4","2.0.0","1.50","1.4.2","1.0.5","2.0.3","2.0.1","4.5.2","0.13","1.3.3","2.6.1","1.1.0","1.1.6","2.29","0.19.0","0.4.10","1.11.1","4.5.2","4.5.2","4.5.2","0.52","1.8-4","2.3.10"]}]}]}
 </script>
 <!--/html_preserve-->
 
@@ -710,7 +710,7 @@ ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',

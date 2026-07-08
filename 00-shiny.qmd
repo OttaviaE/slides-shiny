@@ -6,6 +6,8 @@ format:
   revealjs: 
     page-layout: custom
     theme: simple
+    slide-number:  c/t
+    show-slide-number: all
 server: shiny
 code-annotations: hover
 ---
@@ -43,7 +45,7 @@ output$myOutput = renderPrint({
 ```{r}
 #| echo: true
 #| eval: false
-#| code-line-numbers: "|1-7|8-12|13"
+#| code-line-numbers: "|1-6|7-11|12"
 ui = fluidPage(selectInput(inputId = "mySelection",  # <1>
                           label = h3("Select box"),  # <2>
                           choices = list("Choice 1" = 1, "Choice 2" = 2, "Choice 3" = 3), # <3>
@@ -200,7 +202,7 @@ output$summary <- renderPrint({ # <2>
 ```
 
 
-1. renderPlot is the function in the server mirroring the plotOuput funtcion in the UI
+1. renderPlot is the function in the server mirroring the plotOuput function in the UI
 2. renderPrint is the function in the server mirroring the verbatimTextOutput in the UI
 
 ## Together

@@ -5,11 +5,11 @@ format:
   revealjs: 
     page-layout: custom
     theme: serif
+    slide-number:  c/t
+    show-slide-number: all
 server: shiny
 code-annotations: hover
 ---
-
-#
 
 
 ## 
@@ -37,10 +37,10 @@ downloadHandler("filename", file)
 ```{r}
 #| panel: sidebar
 selectInput(inputId = "dataset",
-                    label = "Choose a dataset:",
-                    choices = list("rock" = 1, 
-                                   "pressure" = 2,
-                                   "cars" = 3))
+                  label = "Choose a dataset:",
+                  choices = c("rock", 
+                                 "pressure",
+                                 "cars"))
 actionButton("load", "Select dataset")
 ```
 
@@ -56,15 +56,12 @@ downloadButton("downloadSummary", "Dowload summary")
 #| context: server
 
 library(tidyverse)
-dataInput = eventReactive(input$load, {
-      if(input$dataset == 1){
-        data <- rock
-      } else if (input$dataset == 2 ){
-        data <- pressure
-      } else if (input$dataset == 3) {
-        data <- cars
-      } 
-    })
+ dataInput = eventReactive(input$load, {
+    switch(input$dataset,
+           rock = rock,
+           pressure = pressure,
+           cars = cars)
+  })
 output$graph <- renderPlot({
       df = dataInput()
       plot(df[, c(1:2)])
